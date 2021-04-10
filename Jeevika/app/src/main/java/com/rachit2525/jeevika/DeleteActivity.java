@@ -3,6 +3,7 @@ package com.rachit2525.jeevika;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,11 +33,14 @@ import java.util.Map;
 
 public class DeleteActivity extends AppCompatActivity {
 
+    TextView textView;
     EditText areaEditText;
     EditText phoneEditText;
     EditText nameEditText;
     Button deleteButton;
     Spinner jobCategorySpinner;
+    EditText otpEditText;
+    Button submitOtpButton;
 
     String phNumber;
     String areaCode;
@@ -49,6 +54,7 @@ public class DeleteActivity extends AppCompatActivity {
     private static final String KEY_NAME = "name";
     private static final String KEY_JOB = "job";
     private static final String TAG = "DeleteActivity";
+    int OTP;
 
     int range = 9;  // to generate a single number with this range, by default its 0..9
     int length = 4; // by default length is 4
@@ -82,11 +88,13 @@ public class DeleteActivity extends AppCompatActivity {
 
         jobCategorySpinner = findViewById(R.id.jobCategorySpinner);
 
+        textView = findViewById(R.id.textView);
         areaEditText = findViewById(R.id.areaEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
         nameEditText = findViewById(R.id.nameEditText);
         deleteButton = findViewById(R.id.deleteButton);
-
+        otpEditText = findViewById(R.id.otpEditText);
+        submitOtpButton = findViewById(R.id.submitOtpButton);
 
         ArrayAdapter<CharSequence> jobAdapter =
                 ArrayAdapter.createFromResource(this, R.array.jobs, android.R.layout.simple_spinner_item);
@@ -149,7 +157,7 @@ public class DeleteActivity extends AppCompatActivity {
                     }
                     phNumber = temp;
                 }
-                int OTP = generateRandomNumber();
+                OTP = generateRandomNumber();
                 String msg = "Name: " + name + " " + "with registered number:" + phNumber + "\n"
                         + "wants to remove himself from Job Category: " + jobSelected +"\n"
                         + " OTP : " + OTP;
@@ -167,10 +175,10 @@ public class DeleteActivity extends AppCompatActivity {
                             try{
                                 SmsManager smgr = SmsManager.getDefault();
                                 smgr.sendTextMessage(nos,null,msg,null,null);
-                                Toast.makeText(getApplicationContext(), "SMS Sent Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "OTP Sent Successfully", Toast.LENGTH_SHORT).show();
                             }
                             catch (Exception e){
-                                Toast.makeText(getApplicationContext(), "SMS Failed to Send, Please try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "OTP Failed to Send, Please try again", Toast.LENGTH_SHORT).show();
                                 System.out.println("###############################################################################"+e.toString()+"###############################################################################");
                             }
                             //numberList.add(snapshot.getString("phone"));
@@ -182,30 +190,79 @@ public class DeleteActivity extends AppCompatActivity {
                 });
 
 
-                db.collection(jobSelected).document(phNumber)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(DeleteActivity.this, "Job deleted! Deletion Successful :)", Toast.LENGTH_SHORT).show();
 
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(DeleteActivity.this, "Error! Please Try Again :(", Toast.LENGTH_SHORT).show();
-                                Log.w(TAG, "Error deleting document", e);
+                ////// here we will be doing the OTP request in the textField
 
+                SetNewVisibilityForButtons();
 
-                            }
-                        });
-                Intent intent = new Intent(DeleteActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
             }
         });
+    }
+
+    private void SetNewVisibilityForButtons() {
+
+        textView.setVisibility(View.INVISIBLE);
+        nameEditText.setVisibility(View.INVISIBLE);
+        areaEditText.setVisibility(View.INVISIBLE);
+        phoneEditText.setVisibility(View.INVISIBLE);
+        deleteButton.setVisibility(View.INVISIBLE);
+        jobCategorySpinner.setVisibility(View.INVISIBLE);
+        submitOtpButton.setVisibility(View.VISIBLE);
+        otpEditText.setVisibility(View.VISIBLE);
+
+        submitOtpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                CountDownTimer timer
+
+                String otpEntered = otpEditText.getText().toString();
+                String otpSend = Integer.toString(OTP);
+
+                if(otpEntered.equals(otpSend)) {
+                    Toast.makeText(DeleteActivity.this, "OTP Correct!", Toast.LENGTH_SHORT).show();
+                    db.collection(jobSelected).document(phNumber)
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(DeleteActivity.this, "Job deleted! Deletion Successful :)", Toast.LENGTH_SHORT).show();
+
+                                    Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(DeleteActivity.this, "Error! Please Try Again :(", Toast.LENGTH_SHORT).show();
+                                    Log.w(TAG, "Error deleting document", e);
+
+
+                                }
+                            });
+
+                    textView.setVisibility(View.VISIBLE);
+                    nameEditText.setVisibility(View.VISIBLE);
+                    areaEditText.setVisibility(View.VISIBLE);
+                    phoneEditText.setVisibility(View.VISIBLE);
+                    deleteButton.setVisibility(View.VISIBLE);
+                    jobCategorySpinner.setVisibility(View.VISIBLE);
+                    submitOtpButton.setVisibility(View.INVISIBLE);
+                    otpEditText.setVisibility(View.INVISIBLE);
+
+                    Intent intent = new Intent(DeleteActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(DeleteActivity.this, "Wrong OTP!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
     }
 }
 
