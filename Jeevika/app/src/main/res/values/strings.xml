@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Jeevika</string>
+    <string-array name="jobs">
+        <item>General Helper</item>
+        <item>Cooking</item>
+        <item>Clothing</item>
+        <item>Labour Work</item>
+        <item>Guard</item>
+        <item>Driver</item>
+        <item>Cleaner</item>
+
+
+    </string-array>
+</resources>
