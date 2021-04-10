@@ -175,6 +175,7 @@ public class DeleteActivity extends AppCompatActivity {
                             try{
                                 SmsManager smgr = SmsManager.getDefault();
                                 smgr.sendTextMessage(nos,null,msg,null,null);
+                                SetNewVisibilityForButtons();
                                 Toast.makeText(getApplicationContext(), "OTP Sent Successfully", Toast.LENGTH_SHORT).show();
                             }
                             catch (Exception e){
@@ -193,7 +194,7 @@ public class DeleteActivity extends AppCompatActivity {
 
                 ////// here we will be doing the OTP request in the textField
 
-                SetNewVisibilityForButtons();
+
 
             }
         });
