@@ -14,8 +14,8 @@
         android:theme="@style/Theme.Jeevika">
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".PublishActivity"></activity>
+        <activity android:name=".FeedActivity"></activity>
         <activity android:name=".DeleteActivity"></activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
