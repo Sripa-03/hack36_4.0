@@ -31,6 +31,10 @@ Team Name: return toSleep();
 * [Shivangi Yadav](https://github.com/Shivangi-Yadav)
 * [Srijan Pandey](https://github.com/Sripa-03)
 
+##Links
+* [PPT](https://drive.google.com/file/d/1X6jocralPE0AhTRlgRjc6s6JQ_L0zyxX/view)
+* [Video](https://drive.google.com/file/d/1ouAhtUONiZEQpMUuTURUE_ugaiZMM501/view?usp=sharing)
+
 
 ### Made at:
 <a href="https://hack36.com"> <img src="http://bit.ly/BuiltAtHack36" height=20px> </a>
