@@ -4,65 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/offWhite"
     tools:context=".PublishActivity">
 
-    <TextView
-        android:id="@+id/textView"
+
+    <Button
+        android:id="@+id/publishButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:backgroundTint="@color/offWhite"
-        android:text="Job Title"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/jobAppSpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Spinner
-        android:id="@+id/jobAppSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="25sp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Publish"
+        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/jobDetailEditText"
-        android:layout_width="285dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="52dp"
-        android:backgroundTint="@color/offWhite"
-        android:ems="6"
-        android:hint="Job Details"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textColor="@color/teal_700"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/pNameEditText" />
 
     <EditText
         android:id="@+id/pPhoneEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/offWhite"
         android:ems="10"
         android:hint="Your contact number"
         android:inputType="phone"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@android:color/holo_blue_dark"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.417"
@@ -73,30 +42,76 @@
         android:id="@+id/pNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/offWhite"
         android:ems="10"
         android:hint="Publisher Name"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@android:color/holo_blue_dark"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pPhoneEditText" />
 
-    <Button
-        android:id="@+id/publishButton"
+    <EditText
+        android:id="@+id/jobDetailEditText"
+        android:layout_width="285dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="@color/offWhite"
+        android:ems="6"
+        android:hint="Job Details"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Spinner
+        android:id="@+id/jobAppSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="@color/offWhite"
-        android:text="Publish"
-        android:textColor="@color/teal_700"
+        android:layout_marginTop="156dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:backgroundTint="@color/offWhite"
+        android:text="Job Title"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/jobAppSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pNameEditText" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="419dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/jeevika2"
+        app:layout_constraintBottom_toTopOf="@+id/jobAppSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
