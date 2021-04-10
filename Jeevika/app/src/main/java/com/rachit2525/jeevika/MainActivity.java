@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button deleteBtn;
     Button publishBtn;
     Button registerBtn;
+    Button feedBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         deleteBtn = findViewById(R.id.deleteBtn);
         publishBtn = findViewById(R.id.publishBtn);
         registerBtn = findViewById(R.id.registerBtn);
+        feedBtn = findViewById(R.id.feedBtn);
 
         deleteBtn.setOnClickListener(this);
         publishBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
+        feedBtn.setOnClickListener(this);
 
     }
 
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.deleteBtn:
             {
                 Toast.makeText(this, "Remove the job!", Toast.LENGTH_SHORT).show();
-                openDeleteActivity();
                 break;
             }
             case R.id.publishBtn:
@@ -52,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openPublishActivity();
                 break;
             }
+            case R.id.feedBtn:
+            {
+                Toast.makeText(this,"All Jobs are here!",Toast.LENGTH_LONG).show();
+                openFeedActivity();
+            }
 
         }
     }
@@ -59,8 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-    private void openDeleteActivity() {
-        Intent intent = new Intent(this, DeleteActivity.class);
+
+    private void openFeedActivity() {
+        Intent intent = new Intent(this,FeedActivity.class);
         startActivity(intent);
     }
 
@@ -68,6 +76,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, PublishActivity.class);
         startActivity(intent);
     }
-
 
 }
