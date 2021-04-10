@@ -48,6 +48,9 @@ public class PublishActivity extends AppCompatActivity {
     String pName;
     String jobTitle;
 
+    public static String POST_MSG;
+    public static int NO_OF_POSTS = 0;
+
     FirebaseFirestore db;
     private List<String> numberList = new ArrayList<>();
     ListView listView;
@@ -113,6 +116,30 @@ public class PublishActivity extends AppCompatActivity {
 
                 String msg = "Job Category: " + jobTitle +"\n" + "Job Details: " + jobDetails + "\n" +
                         "Name: " + pName + "\n" + "Contact Us:" + pphNumber ;
+
+                int p = NO_OF_POSTS++;
+                String pos = Integer.toString(p);
+
+                Map<String, String> applicantDetails = new HashMap<>();
+                applicantDetails.put("post_data", msg);
+                applicantDetails.put("position",pos);
+
+
+                db.collection("All Post").document(pos).set(applicantDetails)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(PublishActivity.this, "Post Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(PublishActivity.this, "Error! Please Try Again :(", Toast.LENGTH_SHORT).show();
+                                //Log.d(TAG, e.toString());
+                            }
+                        });
+                //POST_MSG = msg;
 
                 //Toast.makeText(PublishActivity.this, msg, Toast.LENGTH_SHORT).show();
 
