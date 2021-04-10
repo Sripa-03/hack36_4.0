@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.publishBtn:
             {
                 Toast.makeText(this, "Publish the job!", Toast.LENGTH_SHORT).show();
+                openPublishActivity();
                 break;
             }
 
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-
+    private void openPublishActivity() {
+        Intent intent = new Intent(this, PublishActivity.class);
+        startActivity(intent);
+    }
 
 
 }
