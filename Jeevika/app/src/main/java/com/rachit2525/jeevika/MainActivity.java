@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.deleteBtn:
             {
                 Toast.makeText(this, "Remove the job!", Toast.LENGTH_SHORT).show();
+                openDeleteActivity();
                 break;
             }
             case R.id.publishBtn:
@@ -57,5 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+    private void openDeleteActivity() {
+        Intent intent = new Intent(this, DeleteActivity.class);
+        startActivity(intent);
+    }
+
+
+
 
 }
