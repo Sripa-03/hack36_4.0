@@ -56,6 +56,10 @@ public class DeleteActivity extends AppCompatActivity {
     private static final String TAG = "DeleteActivity";
     int OTP;
 
+    CountDownTimer countDownTimer;
+    long timeLeftInMilliSeconds;
+    boolean timerRunning;
+
     int range = 9;  // to generate a single number with this range, by default its 0..9
     int length = 4; // by default length is 4
 
@@ -211,11 +215,34 @@ public class DeleteActivity extends AppCompatActivity {
         submitOtpButton.setVisibility(View.VISIBLE);
         otpEditText.setVisibility(View.VISIBLE);
 
+        //                CountDownTimer timer
+
+        timeLeftInMilliSeconds = 30000;
+        countDownTimer = new CountDownTimer(timeLeftInMilliSeconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliSeconds = l;
+                Log.d(TAG, "onTick: "+timeLeftInMilliSeconds);
+                System.out.println("/////////////////////////////////************************* TIMER ********************/////////////////////////////");
+            }
+
+            @Override
+            public void onFinish() {
+                Toast.makeText(DeleteActivity.this, "OTP Expired! Please try again.", Toast.LENGTH_SHORT).show();
+                textView.setVisibility(View.VISIBLE);
+                nameEditText.setVisibility(View.VISIBLE);
+                areaEditText.setVisibility(View.VISIBLE);
+                phoneEditText.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
+                jobCategorySpinner.setVisibility(View.VISIBLE);
+                submitOtpButton.setVisibility(View.INVISIBLE);
+                otpEditText.setVisibility(View.INVISIBLE);
+            }
+        }.start();
+
         submitOtpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                CountDownTimer timer
 
                 String otpEntered = otpEditText.getText().toString();
                 String otpSend = Integer.toString(OTP);
