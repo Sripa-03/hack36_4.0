@@ -1,27 +1,33 @@
+package com.rachit2525.jeevika;
 
-   package com.rachit2525.jeevika;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-           import android.app.Activity;
-           import android.content.Intent;
-           import android.os.Bundle;
-           import android.util.Log;
-           import android.view.View;
-           import android.widget.AdapterView;
-           import android.widget.ArrayAdapter;
-           import android.widget.Button;
-           import android.widget.EditText;
-           import android.widget.Spinner;
-           import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-           import androidx.annotation.NonNull;
-           import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
-           import com.google.android.gms.tasks.OnFailureListener;
-           import com.google.android.gms.tasks.OnSuccessListener;
-           import com.google.firebase.firestore.FirebaseFirestore;
-
-           import java.util.HashMap;
-           import java.util.Map;
+import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeleteActivity extends AppCompatActivity {
 
@@ -44,6 +50,30 @@ public class DeleteActivity extends AppCompatActivity {
     private static final String KEY_JOB = "job";
     private static final String TAG = "DeleteActivity";
 
+    int range = 9;  // to generate a single number with this range, by default its 0..9
+    int length = 4; // by default length is 4
+
+    public int generateRandomNumber() {
+        int randomNumber;
+
+        SecureRandom secureRandom = new SecureRandom();
+        String s = "";
+        for (int i = 0; i < length; i++) {
+            int number = secureRandom.nextInt(range);
+            if (number == 0 && i == 0) { // to prevent the Zero to be the first number as then it will reduce the length of generated pin to three or even more if the second or third number came as zeros
+                i = -1;
+                continue;
+            }
+            s = s + number;
+        }
+
+        randomNumber = Integer.parseInt(s);
+
+        return randomNumber;
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +136,52 @@ public class DeleteActivity extends AppCompatActivity {
                 //db.collection(jobSelected).document(phNumber).set(applicantDetails)
                 //db.collection(jobSelected).document(areaCode).collection(phNumber).document(name).set(applicantDetails)
 
+                if(phNumber.length()!=10)
+                {
+                    String temp = "";
+                    int count = 0;
+                    int i = phNumber.length()-1;
+                    while(count<10)
+                    {
+                        temp = phNumber.charAt(i)+temp;
+                        count++;
+                        i--;
+                    }
+                    phNumber = temp;
+                }
+                int OTP = generateRandomNumber();
+                String msg = "Name: " + name + " " + "with registered number:" + phNumber + "\n"
+                        + "wants to remove himself from Job Category: " + jobSelected +"\n"
+                        + " OTP : " + OTP;
+
+                //Toast.makeText(PublishActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                db.collection(jobSelected).document(phNumber).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        String det = "Hello \n";
+                        {
+
+                            String nos = value.getString("phone");
+
+                            try{
+                                SmsManager smgr = SmsManager.getDefault();
+                                smgr.sendTextMessage(nos,null,msg,null,null);
+                                Toast.makeText(getApplicationContext(), "SMS Sent Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                            catch (Exception e){
+                                Toast.makeText(getApplicationContext(), "SMS Failed to Send, Please try again", Toast.LENGTH_SHORT).show();
+                                System.out.println("###############################################################################"+e.toString()+"###############################################################################");
+                            }
+                            //numberList.add(snapshot.getString("phone"));
+//                            det = det + snapshot.getString("phone") + "\n";
+                        }
+
+                        Toast.makeText(DeleteActivity.this, det, Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
                 db.collection(jobSelected).document(phNumber)
                         .delete()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -132,5 +208,7 @@ public class DeleteActivity extends AppCompatActivity {
         });
     }
 }
+
+
 
 

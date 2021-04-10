@@ -94,6 +94,20 @@ public class RegisterActivity extends AppCompatActivity {
                 phNumber = phoneEditText.getText().toString();
                 name = nameEditText.getText().toString();
 
+                if(phNumber.length()!=10)
+                {
+                    String temp = "";
+                    int count = 0;
+                    int i = phNumber.length()-1;
+                    while(count<10)
+                    {
+                        temp = phNumber.charAt(i)+temp;
+                        count++;
+                        i--;
+                    }
+                    phNumber = temp;
+                }
+
                 Map<String, String> applicantDetails = new HashMap<>();
                 applicantDetails.put(KEY_PHONE, phNumber);
                 applicantDetails.put(KEY_NAME,name);
