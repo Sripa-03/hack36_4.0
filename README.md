@@ -9,13 +9,19 @@ This is the repository of an android app build during MNNIT's 36hrs hackathon HA
 
 
 
-## Table of Contents:
+## To connect informal workers to the employers,This app Jeevika provides an online platform –
+* Workers can register themselves for jobs
+* Employers can post their requirements
+* Can see Previously posted jobs in Feed
+* Since all workers don’t have access to android devices, they will still get notified on their basic phones via SMS
+* To ensure that workers are not deregistered fraudulently, an OTP service is implemented.
 
 
 ## Technology Stack:
   1) JAVA
   2) Google Firebase
-  3) Android Development
+  3) Android Studio
+  4) Cloud Firestore
 
 ## Contributors:
 Team Name: return toSleep();
