@@ -4,52 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="@color/offWhite"
     tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:backgroundTint="@color/offWhite"
-        android:text="Select the Job"
-        android:textColor="@color/teal_700"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/jobCategorySpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/jobCategorySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="155dp"
-        android:backgroundTint="@color/offWhite"
-        android:textColor="@color/teal_700"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/areaEditText"
+    <Button
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:backgroundTint="@color/offWhite"
-        android:ems="6"
-        android:hint="Area ZipCode"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:textColor="@color/teal_700"
-        android:textColorHint="@color/white"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Register"
+        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
     <EditText
         android:id="@+id/phoneEditText"
@@ -61,7 +30,7 @@
         android:hint="Your contact number"
         android:inputType="phone"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@android:color/holo_blue_dark"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -78,25 +47,68 @@
         android:hint="Your Name"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@android:color/holo_blue_dark"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneEditText" />
 
-    <Button
-        android:id="@+id/registerButton"
+    <EditText
+        android:id="@+id/areaEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:backgroundTint="@color/offWhite"
-        android:text="Register"
-        android:textColor="@color/teal_700"
+        android:ems="6"
+        android:hint="Area ZipCode"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Spinner
+        android:id="@+id/jobCategorySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:backgroundTint="@color/offWhite"
+        android:textColor="@color/teal_700"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Select the Job"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/jobCategorySpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="419dp"
+        android:layout_height="149dp"
+
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/jeevika2"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
