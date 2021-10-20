@@ -4,7 +4,7 @@
 # hack36_4.0
 <p align="center">
 
-This is the repository of an android app build during MNNIT's 36hrs hackathon HACK36's 4th edition.
+This is the repository of an android app build during MNNIT's 36hrs hackathon HACK36's 4th edition..
 </p>
 
 
